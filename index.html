@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Executivo: Estimulação Cerebral Profunda Adaptativa vs Convencional para Doença de Parkinson</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin: 1.5rem 0 1rem;
+            color: var(--primary-color);
+        }
+        
+        h3 {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin: 1.2rem 0 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .tabs {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 1rem 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.3rem;
+            background-color: var(--light-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+        }
+        
+        .tab-button:hover {
+            background-color: #d1d8e0;
+        }
+        
+        .tab-button.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .expandable-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .expandable-header {
+            background-color: var(--light-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .expandable-header:hover {
+            background-color: #d1d8e0;
+        }
+        
+        .expandable-content {
+            padding: 1rem;
+            border: 1px solid #e1e1e1;
+            border-top: none;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+        
+        .expandable-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .expandable-section.collapsed .expandable-content {
+            display: none;
+        }
+        
+        .expandable-section.collapsed .expandable-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 0.2rem;
+            border-radius: 3px;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .grid-item {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        th {
+            background-color: var(--light-color);
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .key-finding {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .warning {
+            background-color: #fff3e0;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                justify-content: flex-start;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs" id="tabs">
+        <button class="tab-button active" data-tab="resumo">Resumo</button>
+        <button class="tab-button" data-tab="introducao">Introdução</button>
+        <button class="tab-button" data-tab="metodologia">Metodologia</button>
+        <button class="tab-button" data-tab="resultados">Resultados</button>
+        <button class="tab-button" data-tab="discussao">Discussão</button>
+        <button class="tab-button" data-tab="conclusao">Conclusão</button>
+    </div>
+
+    <div class="container">
+        <div id="resumo" class="tab-content active">
+            <h1>Estimulação Cerebral Profunda Adaptativa vs Convencional para Doença de Parkinson</h1>
+            
+            <div class="card">
+                <h2>Resumo Executivo</h2>
+                <p>Este estudo multicêntrico retrospectivo avaliou a segurança e eficácia de um novo dispositivo de neuroestimulação em circuito fechado (CNS) para Estimulação Cerebral Profunda Adaptativa (aDBS) em comparação com a Estimulação Cerebral Profunda Convencional (cDBS) no tratamento da Doença de Parkinson (DP) durante um ano.</p>
+                
+                <div class="key-finding">
+                    <h3>Principais Descobertas</h3>
+                    <ul>
+                        <li>Ambas as modalidades (aDBS e cDBS) melhoraram significativamente os sintomas motores e a qualidade de vida dos pacientes com DP</li>
+                        <li>O grupo aDBS demonstrou melhorias superiores em comparação ao grupo cDBS em:
+                            <ul>
+                                <li>MDS-UPDRS II (57,29% vs 33,02%, p=0,022)</li>
+                                <li>MDS-UPDRS IV (59,83% vs 36,69%, p=0,026)</li>
+                                <li>PDQ-39 (56,91% vs 27,37%, p=0,031)</li>
+                                <li>Redução da dose diária equivalente de levodopa (LEDD) (53,35% vs 29,16%, p=0,002)</li>
+                            </ul>
+                        </li>
+                        <li>O dispositivo CNS registrou sinais beta do núcleo subtalâmico (STN) que podem ser adotados como biomarcadores</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+            
+            <div class="expandable-section">
+                <div class="expandable-header">
+                    <span>Implicações Clínicas</span>
+                    <span class="expandable-icon">▼</span>
+                </div>
+                <div class="expandable-content">
+                    <p>A aDBS representa uma abordagem promissora para o tratamento da DP, oferecendo vantagens potenciais na minimização dos efeitos colaterais induzidos pela estimulação e na melhoria da qualidade de vida. Embora comparável no controle dos sintomas motores, a aDBS demonstrou vantagens sobre a cDBS na redução da medicação, nas atividades da vida diária (MDS-UPDRS II), nas complicações motoras (MDS-UPDRS IV) e na qualidade de vida (PDQ-39) a longo prazo.</p>
+                    <p>Estes resultados sugerem que a aDBS pode oferecer uma abordagem mais abrangente para o manejo dos sintomas da DP, adaptando-se às condições clínicas flutuantes dos pacientes e proporcionando um tratamento personalizado conforme necessário.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="introducao" class="tab-content">
+            <h1>Introdução</h1>
+            
+            <div class="card">
+                <p>A Doença de Parkinson (DP) é a segunda doença neurodegenerativa relacionada ao envelhecimento mais comum. Com o aumento da expectativa de vida, a incidência da DP continua a crescer, levando a desafios significativos para pacientes, famílias e sociedade.</p>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Estimulação Cerebral Profunda Convencional (cDBS)</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>A estimulação cerebral profunda convencional (cDBS) direcionada ao núcleo subtalâmico (STN) ou ao globo pálido interno tem servido como uma terapia bem estabelecida para DP moderada a avançada por várias décadas. Embora a cDBS tenha sido relatada como eficaz na redução dos sintomas motores e não motores da DP em estudos de curto e longo prazo, sua aplicação pode ser limitada por efeitos adversos relacionados à estimulação, incluindo disartria, distúrbios da marcha e a necessidade de ajustes frequentes dos parâmetros de estimulação.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Estimulação Cerebral Profunda Adaptativa (aDBS)</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Nos últimos anos, progressos substanciais foram alcançados no desenvolvimento de técnicas de DBS adaptativa (aDBS) que visam ajustar automaticamente os parâmetros de estimulação para acomodar as condições clínicas flutuantes dos pacientes com DP, oferecendo tratamento personalizado às necessidades específicas do paciente conforme necessário.</p>
+                        <p>Nas últimas décadas, esforços substanciais foram feitos para identificar marcadores fisiológicos de potenciais de campo local (LFPs) em ambientes clínicos para estimulação em circuito fechado. A correlação entre oscilações beta (13-35 Hz) e sintomas motores na DP, que está intimamente ligada à fisiopatologia da DP, está entre os biomarcadores mais consistentes e robustos observados em vários grupos de pesquisa.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Dispositivos aDBS Implantáveis</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Vários dispositivos aDBS implantáveis estão atualmente recebendo validação clínica. A versão inicial da aDBS com capacidade de detecção (Activa™ PC+S) e a próxima versão (Activa™ RC+S) introduzidas pela Medtronic, Inc. foram limitadas a vários centros de pesquisa clínica. O primeiro dispositivo aDBS comercialmente disponível (Medtronic Percept™ PC) foi lançado em 2020, com sua contraparte recarregável (Medtronic Percept™ RC) seguindo em 2024. Além da Medtronic, várias outras empresas, incluindo Newronika, Boston Scientific, Bioinduction e Neuralink, continuam a avançar e otimizar a tecnologia aDBS.</p>
+                    </div>
+                </div>
+                
+                <div class="key-finding">
+                    <h3>Objetivo do Estudo</h3>
+                    <p>O objetivo deste estudo retrospectivo multicêntrico foi avaliar um dispositivo DBS recarregável recém-desenvolvido para DP, que oferece dois modos de estimulação: aDBS e cDBS. O gerador de pulso implantável (IPG) pode registrar LFP do núcleo-alvo através do eletrodo em tempo real e processar os dados através de um algoritmo de circuito fechado incorporado para ajustar os parâmetros de estimulação, enquanto transmite dados sem fio do estimulador para o dispositivo de gravação para análise em tempo real adicional.</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="dbs_comparison_chart"></canvas>
+            </div>
+        </div>
+
+        <div id="metodologia" class="tab-content">
+            <h1>Metodologia</h1>
+            
+            <div class="card">
+                <h2>Pacientes e Intervenções</h2>
+                <p>Dados de 62 pacientes com DP de oito centros clínicos foram revisados retrospectivamente para comparar os resultados da aDBS e cDBS. Todos os pacientes foram designados aleatoriamente para o grupo Stim-on (n=32) ou o grupo Stim-off (n=30).</p>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Desenho do Estudo</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <ul>
+                            <li><strong>Grupo Stim-on:</strong> O IPG foi iniciado com cDBS 20±15 dias após a cirurgia</li>
+                            <li><strong>Grupo Stim-off:</strong> Começou a receber DBS 90 dias após a cirurgia</li>
+                            <li><strong>Entre 90 e 180 dias após a cirurgia:</strong> Os pacientes foram alocados para o grupo aDBS (n=30) ou cDBS (n=32), com base na preferência do paciente e na capacidade de monitorar a atividade da banda beta</li>
+                            <li><strong>De 180 a 360 dias após a cirurgia:</strong> Todos os pacientes receberam estimulação na mesma modalidade (aDBS ou cDBS) conforme atribuído anteriormente</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Avaliações Clínicas</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Características clínicas, incluindo sexo, idade no diagnóstico, duração da doença, Escala Unificada de Avaliação da Doença de Parkinson patrocinada pela Sociedade de Distúrbios do Movimento (MDS-UPDRS), Escala de Avaliação de Depressão de Hamilton, Questionário da Doença de Parkinson-39 (PDQ-39), dose diária equivalente de levodopa (LEDD), Mini-Exame do Estado Mental e Escala de Schwab e England (SES), foram avaliadas.</p>
+                        <p>Todas as avaliações dos pacientes incluídos foram realizadas nos estados Med-off e Med-on na linha de base, 90 e 360 dias após a cirurgia. A segurança foi avaliada registrando a gravidade e frequência dos eventos adversos relatados pelos pacientes.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Procedimento Cirúrgico</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>A implantação cirúrgica do dispositivo DBS foi conduzida usando um procedimento padrão envolvendo técnicas de registro estereotáxico baseado em quadro e microeletrodo. No estudo, pacientes com DP foram implantados com eletrodos bilaterais visando o STN, juntamente com um dispositivo CNS IPG implantável e recarregável com capacidade de detecção (Rishena Medical Co, Ltd, Changzhou, China).</p>
+                        <p>As coordenadas-alvo foram estabelecidas com base em imagens de ressonância magnética pré-operatórias. Extensões foram conectadas aos IPGs com capacidade de detecção de LFP. Testes comportamentais intraoperatórios foram conduzidos para verificar a eficácia da estimulação e evitar quaisquer efeitos adversos potenciais.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Gravações LFP e Estimulações Adaptativas</h2>
+                <p>O dispositivo CNS obteve alterações monitoráveis de LFP de todos os pacientes inscritos e registrou alterações no STN-LFP sob diferentes estados, incluindo MED-off/on e sono/vigília.</p>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Funcionamento do Dispositivo CNS</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>O dispositivo CNS aDBS para tratamento da DP usa um mecanismo inovador de aquisição de dados e feedback. Especificamente, o dispositivo opera em um ciclo de 5 segundos de aquisição e análise de sinal neural, seguido por 54 segundos de feedback de estimulação, e um período de descanso de 1 segundo para mitigar artefatos de estimulação, para garantir a precisão dos sinais registrados.</p>
+                        <p>Os LFPs são coletados em tempo real pelos eletrodos com uma taxa de amostragem de 250 Hz usando gravação bipolar, quando contatos adjacentes são usados como contatos de referência e gravação, respectivamente. O sinal bruto é primeiro submetido a um filtro passa-alta Butterworth de quarta ordem de 1 Hz para remover o componente DC, seguido por um filtro notch de 50 Hz para eliminar a interferência da linha de energia.</p>
+                        <p>Em seguida, o sinal filtrado é transformado em um domínio de tempo-frequência usando a transformada de Fourier de curto tempo, e um gráfico de tempo-frequência é gerado para ilustrar variações de energia das diferentes bandas de frequência ao longo do tempo. Segmentos do sinal são calculados em média para obter o espectro de potência.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Análise Estatística</h2>
+                <p>O teste X² foi realizado para avaliar a diferença de sexo entre os grupos aDBS e cDBS. Comparações intergrupos da eficácia terapêutica foram realizadas usando o teste U de Mann-Whitney, que incluiu diferenças na melhoria da linha de base até 90 dias entre os grupos Stim-off e Stim-on, além de diferenças na melhoria da linha de base até 360 dias entre os grupos aDBS e cDBS. Um valor de probabilidade (p) < 0,05 foi considerado estatisticamente significativo.</p>
+            </div>
+        </div>
+
+        <div id="resultados" class="tab-content">
+            <h1>Resultados</h1>
+            
+            <div class="card">
+                <h2>Características da Coorte</h2>
+                <p>A coorte deste estudo retrospectivo incluiu um total de 62 pacientes (34 homens e 28 mulheres; idade média de início da doença, 50,97±9,78 anos; duração da doença, 8,98±5,41 anos). As características basais dos pacientes foram comparáveis nos grupos Stim-on (n=32) e Stim-off (n=30), além dos grupos cDBS (n=32) e aDBS (n=30).</p>
+            </div>
+            
+            <div class="card">
+                <h2>Comparação dos Grupos Stim-off e Stim-on aos 90 Dias Pós-cirurgia</h2>
+                <p>Diferenças significativas foram observadas entre os grupos Stim-on e Stim-off em:</p>
+                <ul>
+                    <li>MDS-UPDRS II (42,37%±33,16% vs -10,97%±65,15%, p<0,001)</li>
+                    <li>MDS-UPDRS III (estado Med-off: 48,38%±19,81% vs 5,03%±23,15%, p<0,001; estado Med-on: 27,48%±50,44% vs 2,54%±32,51%, p<0,001)</li>
+                    <li>MDS-UPDRS IV (42,02%±33,94% vs 4,75±55,64%, p<0,001)</li>
+                    <li>PDQ39 (35,41±49,77% vs -9,60±48,10%, p<0,001)</li>
+                    <li>SES (20,74%±24,95% vs 10,14%±23,29%, p=0,029)</li>
+                </ul>
+                <p>No entanto, não foram encontradas diferenças estatisticamente significativas na redução de LEDD (24,58%±25,32% vs 12,63%±27,59%, p=0,051).</p>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Análise de Subgrupos do MDS-UPDRS III</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>A análise de subgrupos do MDS-UPDRS III não revelou diferenças significativas na fala entre os dois grupos nos estados Med-on (13,33%±69,16% vs 1,39%±55,59%, p=0,529). No entanto, para os outros subgrupos motores, o grupo Stim-on indicou melhorias significativamente melhores do que o grupo Stim-off, independentemente do estado Med-off/On (p<0,05).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="stim_comparison_chart"></canvas>
+            </div>
+            
+            <div class="card">
+                <h2>Comparação dos Resultados a Longo Prazo nos Grupos aDBS e cDBS</h2>
+                <p>Na avaliação pós-operatória de 360 dias, tanto a aDBS quanto a cDBS levaram a um alívio significativo nos sintomas motores e não motores de pacientes com DP em comparação com a linha de base. No entanto, o grupo aDBS mostrou resultados estatisticamente superiores em:</p>
+                <ul>
+                    <li>MDS-UPDRS II (57,29%±26,81% vs 33,02%±56,16%, p=0,022)</li>
+                    <li>MDS-UPDRS IV (59,83%±66,41% vs 36,69%±62,61%, p=0,026)</li>
+                    <li>PDQ-39 (56,91%±29,77% vs 27,37%±69,94% p=0,031)</li>
+                    <li>Taxas de redução de LEDD (53,35%±28,02% vs 29,16%±30,63%, p=0,002)</li>
+                </ul>
+                <p>Não foram observadas diferenças significativas entre os grupos aDBS e cDBS nas taxas de melhoria do MDS-UPDRS III, incluindo seus subgrupos motores, além do SES (p>0,05).</p>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="adbs_cdbs_comparison"></canvas>
+            </div>
+            
+            <div class="card">
+                <h2>Eventos Adversos</h2>
+                <p>Foram relatados 17 eventos adversos (27,42%) e dois eventos adversos graves (3,23%) durante o acompanhamento de um ano. Todos os 17 eventos adversos não estavam relacionados ao dispositivo. O único evento adverso grave relacionado ao dispositivo foi devido a um mau funcionamento no software do IPG, que impediu o dispositivo de recarregar três meses após o implante cirúrgico. Após a substituição do IPG, o paciente se recuperou bem e continuou a participação no estudo.</p>
+            </div>
+        </div>
+
+        <div id="discussao" class="tab-content">
+            <h1>Discussão</h1>
+            
+            <div class="card">
+                <p>Neste estudo retrospectivo, a eficácia e segurança do CNS foram avaliadas em 62 pacientes com DP de uma coorte multicêntrica com dados de acompanhamento de um ano. Este estudo fornece evidências confirmando a validade terapêutica do dispositivo CNS, como mostrado pela superioridade clínica significativa do grupo Stim-on em relação ao grupo Stim-off durante o período pós-operatório de 90 dias.</p>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Comparação com Estudos Anteriores</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>As melhorias relatadas nos escores MDS-UPDRS III da cDBS de longo prazo variaram de 28% a 71%, o que se alinha de perto com os resultados deste estudo (55,80% de melhoria aos 90 dias e 52,42% de melhoria aos 360 dias com cDBS). A segunda etapa deste estudo mostrou que tanto a cDBS quanto a aDBS aliviaram significativamente os sintomas motores e melhoraram a qualidade de vida em comparação com a linha de base.</p>
+                        <p>No entanto, a pesquisa sobre a eficácia a longo prazo da aDBS é relativamente limitada. A eficácia da aDBS neste estudo, medida pelo escore MDS-UPDRS III aos 360 dias de pós-operatório, foi comparável à cDBS de longo prazo, além do SES. Além disso, análises de subgrupos dos componentes do MDS-UPDRS III não revelaram diferenças significativas entre os grupos sob os estados Med-off e Med-on.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Diferenças nos Resultados entre Stim-on e Stim-off</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Não foram observadas diferenças significativas entre os grupos Stim-on e Stim-off na melhoria da fala sob condições Med-on ou taxas de redução de LEDD. Essas discrepâncias merecem consideração mecanística e clínica.</p>
+                        <p>Primeiro, a falta de melhoria da fala no grupo Stim-on durante os estados Med-on pode refletir a sensibilidade limitada das redes relacionadas à fala à modulação cDBS de curto prazo, ou pode indicar efeitos dopaminérgicos compensatórios mascarando os benefícios da estimulação neste domínio específico.</p>
+                        <p>Segundo, as taxas comparáveis de redução de LEDD nos dois grupos provavelmente resultaram do protocolo clínico padronizado que atrasou a redução agressiva da medicação até a estabilização pós-operatória, o que coincidiu com a linha do tempo de ativação do grupo Stim-off. Este protocolo inerentemente limitou a diferenciação precoce na dependência dopaminérgica, sugerindo que as trajetórias de LEDD a longo prazo além da janela de 90 dias podem melhor elucidar os efeitos de economia de medicação induzidos pela estimulação.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Vantagens da aDBS sobre a cDBS</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Embora mostrando controle de sintomas motores comparável à cDBS durante estimulação prolongada, a aDBS exibe vantagens terapêuticas multidimensionais superiores em MDS-UPDRS II/IV, PDQ-39 e taxas de redução de LEDD, posicionando a aDBS como uma estratégia de neuromodulação mais abrangente. Estes resultados estão alinhados com estudos anteriores sugerindo que a aDBS pode fornecer benefícios terapêuticos aprimorados em resultados funcionais, complicações motoras e redução de medicação.</p>
+                        <p>A melhoria aprimorada no MDS-UPDRS IV no grupo aDBS pode ser parcialmente atribuída à redução concomitante no LEDD, o que minimiza o risco de complicações induzidas pela levodopa.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Oscilações Beta como Biomarcadores</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Neste estudo, eletrodos STN bilaterais foram implantados em todos os pacientes. O modo aDBS do CNS também foi guiado por oscilações beta do STN como um biomarcador para estimulação de feedback, que foi aumentada quando os sinais beta excederam um limiar predeterminado e reduzida quando os sinais beta diminuíram abaixo deste valor.</p>
+                        <p>Pesquisas anteriores estabeleceram uma forte correlação entre oscilações beta e sintomas da DP, com atividade beta STN amplamente reconhecida como um biomarcador confiável de resultados clínicos favoráveis da aDBS. Numerosos estudos identificaram atividade excessiva da banda beta nos gânglios da base como um biomarcador da gravidade dos sintomas motores, particularmente bradicinesia e rigidez.</p>
+                        <p>Como mostrado no estudo, as oscilações beta STN foram significativamente influenciadas pelo status Med on/off ou sono/vigília. A terapia dopaminérgica e/ou DBS demonstraram suprimir a atividade beta, com o grau de supressão correlacionado com a melhoria dos sintomas na DP.</p>
+                    </div>
+                </div>
+                
+                <div class="expandable-section">
+                    <div class="expandable-header">
+                        <span>Limitações do Estudo</span>
+                        <span class="expandable-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Houve várias limitações neste estudo retrospectivo que devem ser consideradas ao interpretar os resultados:</p>
+                        <ol>
+                            <li>Este estudo foi inerentemente limitado devido ao viés de seleção e dados incompletos.</li>
+                            <li>Nosso foco metodológico nas comparações de eficácia longitudinal da aDBS e cDBS limitou a detecção de efeito de curto prazo.</li>
+                            <li>Apenas pacientes nos quais a atividade da banda beta detectável foi mostrada e que toleraram a aDBS foram incluídos no grupo aDBS, o que pode limitar a aplicabilidade dos resultados a uma população mais ampla de DP.</li>
+                            <li>O modo aDBS do CNS foi limitado por intervalos sem estimulação e pequenos atrasos nas respostas adaptativas em tempo real aos estados neurais.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="conclusao" class="tab-content">
+            <h1>Conclusão</h1>
+            
+            <div class="card">
+                <p>Em conclusão, tanto a aDBS quanto a cDBS são tratamentos eficazes para a DP, alcançando alívio comparável dos sintomas motores a longo prazo. A aDBS mostrou resultados superiores aos da cDBS na redução de LEDD, MDS-UPDRS II, MDS-UPDRS IV e SES durante o acompanhamento a longo prazo, sugerindo que a aDBS pode oferecer uma abordagem mais abrangente para o manejo dos sintomas da DP.</p>
+                
+                <div class="key-finding">
+                    <h3>Principais Conclusões</h3>
+                    <ul>
+                        <li>Tanto a aDBS quanto a cDBS são eficazes no tratamento da DP, com melhoria significativa dos sintomas motores</li>
+                        <li>A aDBS demonstrou vantagens sobre a cDBS em:
+                            <ul>
+                                <li>Redução da medicação (LEDD)</li>
+                                <li>Atividades da vida diária (MDS-UPDRS II)</li>
+                                <li>Complicações motoras (MDS-UPDRS IV)</li>
+                                <li>Qualidade de vida (PDQ-39)</li>
+                            </ul>
+                        </li>
+                        <li>O dispositivo CNS registrou sinais beta do STN que podem ser adotados como biomarcadores</li>
+                        <li>A aDBS representa uma abordagem promissora para o tratamento personalizado da DP</li>
+                    </ul>
+                </div>
+                
+                <div class="warning">
+                    <h3>Considerações Futuras</h3>
+                    <p>Estudos prospectivos futuros com amostras maiores e períodos de acompanhamento mais longos são necessários para validar ainda mais esses achados. Além disso, pesquisas adicionais são necessárias para otimizar os algoritmos de aDBS e identificar biomarcadores adicionais para melhorar a eficácia do tratamento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script>
+        if (!window.chartInstances) window.chartInstances = {};
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                // Tab navigation
+                const tabs = document.querySelectorAll(".tab-button");
+                const tabContents = document.querySelectorAll(".tab-content");
+                
+                tabs.forEach(tab => {
+                    tab.addEventListener("click", function() {
+                        const tabId = this.getAttribute("data-tab");
+                        
+                        // Remove active class from all tabs and contents
+                        tabs.forEach(t => t.classList.remove("active"));
+                        tabContents.forEach(c => c.classList.remove("active"));
+                        
+                        // Add active class to current tab and content
+                        this.classList.add("active");
+                        document.getElementById(tabId).classList.add("active");
+                        
+                        // Initialize charts if they're in the active tab
+                        initializeChartsIfVisible();
+                    });
+                });
+                
+                // Expandable sections
+                const expandableSections = document.querySelectorAll(".expandable-section");
+                
+                expandableSections.forEach(section => {
+                    const header = section.querySelector(".expandable-header");
+                    const content = section.querySelector(".expandable-content");
+                    
+                    header.addEventListener("click", function() {
+                        section.classList.toggle("collapsed");
+                    });
+                });
+                
+                // Initialize all expandable sections as expanded by default
+                expandableSections.forEach(section => {
+                    if (section.classList.contains("collapsed")) {
+                        section.classList.remove("collapsed");
+                    }
+                });
+                
+                // Initialize charts
+                function initializeChartsIfVisible() {
+                    try {
+                        const activeTab = document.querySelector(".tab-content.active");
+                        if (!activeTab) return;
+                        
+                        const chartContainers = activeTab.querySelectorAll(".chart-container");
+                        
+                        chartContainers.forEach(container => {
+                            const canvas = container.querySelector("canvas");
+                            if (!canvas) return;
+                            
+                            const chartId = canvas.id;
+                            
+                            // Skip if chart is already initialized
+                            if (window.chartInstances[chartId]) return;
+                            
+                            // Initialize chart based on its ID
+                            switch (chartId) {
+                                case "comparisonChart":
+                                    createComparisonChart(chartId);
+                                    break;
+                                case "dbs_comparison_chart":
+                                    createDBSComparisonChart(chartId);
+                                    break;
+                                case "stim_comparison_chart":
+                                    createStimComparisonChart(chartId);
+                                    break;
+                                case "adbs_cdbs_comparison":
+                                    createADBSvsDBSChart(chartId);
+                                    break;
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Erro ao inicializar gráficos:", error);
+                    }
+                }
+                
+                // Create comparison chart
+                function createComparisonChart(chartId) {
+                    try {
+                        const ctx = document.getElementById(chartId).getContext("2d");
+                        
+                        window.chartInstances[chartId] = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels: ["MDS-UPDRS II", "MDS-UPDRS IV", "PDQ-39", "Redução LEDD"],
+                                datasets: [
+                                    {
+                                        label: "aDBS",
+                                        data: [57.29, 59.83, 56.91, 53.35],
+                                        backgroundColor: "rgba(52, 152, 219, 0.7)",
+                                        borderColor: "rgba(52, 152, 219, 1)",
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: "cDBS",
+                                        data: [33.02, 36.69, 27.37, 29.16],
+                                        backgroundColor: "rgba(231, 76, 60, 0.7)",
+                                        borderColor: "rgba(231, 76, 60, 1)",
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: "Comparação de Melhorias (%) entre aDBS e cDBS aos 360 dias",
+                                        font: {
+                                            size: 16
+                                        }
+                                    },
+                                    legend: {
+                                        position: "top"
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return context.dataset.label + ": " + context.raw + "%";
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: "Melhoria (%)"
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Erro ao criar gráfico de comparação:", error);
+                    }
+                }
+                
+                // Create DBS comparison chart
+                function createDBSComparisonChart(chartId) {
+                    try {
+                        const ctx = document.getElementById(chartId).getContext("2d");
+                        
+                        window.chartInstances[chartId] = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels: ["Controle de Sintomas Motores", "Redução de Medicação", "Qualidade de Vida", "Complicações Motoras", "Personalização"],
+                                datasets: [
+                                    {
+                                        label: "DBS Convencional",
+                                        data: [80, 30, 60, 40, 20],
+                                        backgroundColor: "rgba(231, 76, 60, 0.7)",
+                                        borderColor: "rgba(231, 76, 60, 1)",
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: "DBS Adaptativa",
+                                        data: [80, 55, 75, 65, 85],
+                                        backgroundColor: "rgba(52, 152, 219, 0.7)",
+                                        borderColor: "rgba(52, 152, 219, 1)",
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: "Comparação Conceitual: DBS Convencional vs Adaptativa",
+                                        font: {
+                                            size: 16
+                                        }
+                                    },
+                                    legend: {
+                                        position: "top"
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return context.dataset.label + ": " + context.raw + " (escala relativa)";
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        max: 100,
+                                        title: {
+                                            display: true,
+                                            text: "Eficácia Relativa (%)"
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Erro ao criar gráfico de comparação DBS:", error);
+                    }
+                }
+                
+                // Create Stim comparison chart
+                function createStimComparisonChart(chartId) {
+                    try {
+                        const ctx = document.getElementById(chartId).getContext("2d");
+                        
+                        window.chartInstances[chartId] = new Chart(ctx, {
+                            type: "bar",
+                            indexAxis: "y",
+                            data: {
+                                labels: ["MDS-UPDRS II", "MDS-UPDRS III (Med-off)", "MDS-UPDRS III (Med-on)", "MDS-UPDRS IV", "PDQ-39", "SES"],
+                                datasets: [
+                                    {
+                                        label: "Stim-on",
+                                        data: [42.37, 48.38, 27.48, 42.02, 35.41, 20.74],
+                                        backgroundColor: "rgba(52, 152, 219, 0.7)",
+                                        borderColor: "rgba(52, 152, 219, 1)",
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: "Stim-off",
+                                        data: [-10.97, 5.03, 2.54, 4.75, -9.60, 10.14],
+                                        backgroundColor: "rgba(231, 76, 60, 0.7)",
+                                        borderColor: "rgba(231, 76, 60, 1)",
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: "Comparação de Melhorias (%) entre Stim-on e Stim-off aos 90 dias",
+                                        font: {
+                                            size: 16
+                                        }
+                                    },
+                                    legend: {
+                                        position: "top"
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return context.dataset.label + ": " + context.raw + "%";
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: "Melhoria (%)"
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Erro ao criar gráfico de comparação Stim:", error);
+                    }
+                }
+                
+                // Create aDBS vs cDBS chart
+                function createADBSvsDBSChart(chartId) {
+                    try {
+                        const ctx = document.getElementById(chartId).getContext("2d");
+                        
+                        window.chartInstances[chartId] = new Chart(ctx, {
+                            type: "radar",
+                            data: {
+                                labels: [
+                                    "MDS-UPDRS II",
+                                    "MDS-UPDRS III (Med-off)",
+                                    "MDS-UPDRS III (Med-on)",
+                                    "MDS-UPDRS IV",
+                                    "PDQ-39",
+                                    "Redução LEDD"
+                                ],
+                                datasets: [
+                                    {
+                                        label: "aDBS",
+                                        data: [57.29, 60.42, 53.53, 59.83, 56.91, 53.35],
+                                        fill: true,
+                                        backgroundColor: "rgba(52, 152, 219, 0.2)",
+                                        borderColor: "rgba(52, 152, 219, 1)",
+                                        pointBackgroundColor: "rgba(52, 152, 219, 1)",
+                                        pointBorderColor: "#fff",
+                                        pointHoverBackgroundColor: "#fff",
+                                        pointHoverBorderColor: "rgba(52, 152, 219, 1)"
+                                    },
+                                    {
+                                        label: "cDBS",
+                                        data: [33.02, 52.42, 47.56, 36.69, 27.37, 29.16],
+                                        fill: true,
+                                        backgroundColor: "rgba(231, 76, 60, 0.2)",
+                                        borderColor: "rgba(231, 76, 60, 1)",
+                                        pointBackgroundColor: "rgba(231, 76, 60, 1)",
+                                        pointBorderColor: "#fff",
+                                        pointHoverBackgroundColor: "#fff",
+                                        pointHoverBorderColor: "rgba(231, 76, 60, 1)"
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                elements: {
+                                    line: {
+                                        borderWidth: 3
+                                    }
+                                },
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: "Perfil de Eficácia: aDBS vs cDBS aos 360 dias",
+                                        font: {
+                                            size: 16
+                                        }
+                                    },
+                                    legend: {
+                                        position: "top"
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return context.dataset.label + ": " + context.raw + "%";
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    r: {
+                                        angleLines: {
+                                            display: true
+                                        },
+                                        suggestedMin: 0,
+                                        suggestedMax: 70
+                                    }
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error("Erro ao criar gráfico aDBS vs cDBS:", error);
+                    }
+                }
+                
+                // Initialize charts for the active tab on page load
+                initializeChartsIfVisible();
+                
+                // Handle window resize to redraw charts
+                window.addEventListener("resize", function() {
+                    try {
+                        for (const chartId in window.chartInstances) {
+                            if (window.chartInstances[chartId]) {
+                                window.chartInstances[chartId].resize();
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Erro ao redimensionar gráficos:", error);
+                    }
+                });
+                
+                // Initialize MathJax
+                if (typeof MathJax !== "undefined") {
+                    MathJax.typesetPromise().catch(function(err) {
+                        console.error("Erro ao renderizar fórmulas matemáticas:", err);
+                    });
+                }
+            } catch (error) {
+                console.error("Erro na inicialização do documento:", error);
+            }
+        });
+    </script>
+</body>
+</html>
